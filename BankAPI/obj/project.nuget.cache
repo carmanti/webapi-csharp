@@ -1,12 +1,13 @@
 {
   "version": 2,
-  "dgSpecHash": "aZx/jXZa2AlBz32nRdML/qcivuWWHxi9za/q2R0CVkiIQEbACnrvHn2YtvO1/w3mwkvxUlw3l+P07vEcXLQNjQ==",
+  "dgSpecHash": "+WuW+C3BsFXePOK+rhwSIhLoMTOWgZpaaVQ03LuB7VTYCZP2biUHLJJFTtXCx1sQrc2ThmqcAnNIYqME72snKA==",
   "success": true,
   "projectFilePath": "C:\\Users\\jose_\\Documents\\workSpace\\dotnet\\webapi-csharp\\BankAPI\\BankAPI.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\jose_\\.nuget\\packages\\azure.core\\1.24.0\\azure.core.1.24.0.nupkg.sha512",
     "C:\\Users\\jose_\\.nuget\\packages\\azure.identity\\1.6.0\\azure.identity.1.6.0.nupkg.sha512",
     "C:\\Users\\jose_\\.nuget\\packages\\humanizer.core\\2.14.1\\humanizer.core.2.14.1.nupkg.sha512",
+    "C:\\Users\\jose_\\.nuget\\packages\\microsoft.aspnetcore.authentication.jwtbearer\\7.0.1\\microsoft.aspnetcore.authentication.jwtbearer.7.0.1.nupkg.sha512",
     "C:\\Users\\jose_\\.nuget\\packages\\microsoft.aspnetcore.openapi\\7.0.0\\microsoft.aspnetcore.openapi.7.0.0.nupkg.sha512",
     "C:\\Users\\jose_\\.nuget\\packages\\microsoft.bcl.asyncinterfaces\\1.1.1\\microsoft.bcl.asyncinterfaces.1.1.1.nupkg.sha512",
     "C:\\Users\\jose_\\.nuget\\packages\\microsoft.csharp\\4.5.0\\microsoft.csharp.4.5.0.nupkg.sha512",

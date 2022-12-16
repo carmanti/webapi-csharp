@@ -1,4 +1,8 @@
+using System.Text;
 using BankAPI.Data;
+using BankAPI.Services;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.IdentityModel.Tokens;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -9,8 +13,30 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-// referencia a conexion
+// referencia a conexion  DBContext
 builder.Services.AddSqlServer<BankContext>(builder.Configuration.GetConnectionString("BankConnection"));
+// Service Layer
+builder.Services.AddScoped<ClientServices>();
+builder.Services.AddScoped<AccountServices>();
+builder.Services.AddScoped<ClientServices>();
+builder.Services.AddScoped<LoginServices>();
+builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+.AddJwtBearer(options =>
+{
+    options.TokenValidationParameters = new TokenValidationParameters
+    {
+        ValidateIssuerSigningKey = true,
+        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["JWT:Key"])),
+        ValidateIssuer = false,
+        ValidateAudience = false
+    };
+});
+
+//Nueva politica de auttorizacion
+builder.Services.AddAuthorization(options =>
+{
+    options.AddPolicy("SuperAdmin", policy => policy.RequireClaim("AdminType", "Super"));
+});
 
 var app = builder.Build();
 
@@ -22,6 +48,8 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+
+app.UseAuthentication();
 
 app.UseAuthorization();
 

@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using BankAPI.Data;
+using BankAPI.DataBankModels;
 using Microsoft.EntityFrameworkCore;
 
 namespace BankAPI.Data;
@@ -20,12 +20,13 @@ public partial class BankContext : DbContext
 
     public virtual DbSet<AccountType> AccountTypes { get; set; }
 
+    public virtual DbSet<Administrator> Administrators { get; set; }
+
     public virtual DbSet<BankTransaction> BankTransactions { get; set; }
 
     public virtual DbSet<Client> Clients { get; set; }
 
     public virtual DbSet<TransactionType> TransactionTypes { get; set; }
-
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -62,6 +63,33 @@ public partial class BankContext : DbContext
             entity.Property(e => e.Id).HasColumnName("ID");
             entity.Property(e => e.Name)
                 .HasMaxLength(100)
+                .IsUnicode(false);
+            entity.Property(e => e.RegDate)
+                .HasDefaultValueSql("(getdate())")
+                .HasColumnType("datetime");
+        });
+
+        modelBuilder.Entity<Administrator>(entity =>
+        {
+            entity.HasKey(e => e.Id).HasName("PK__Administ__3214EC2700CCCF46");
+
+            entity.ToTable("Administrator");
+
+            entity.Property(e => e.Id).HasColumnName("ID");
+            entity.Property(e => e.AdminType)
+                .HasMaxLength(30)
+                .IsUnicode(false);
+            entity.Property(e => e.Email)
+                .HasMaxLength(50)
+                .IsUnicode(false);
+            entity.Property(e => e.Name)
+                .HasMaxLength(200)
+                .IsUnicode(false);
+            entity.Property(e => e.PhoneNumer)
+                .HasMaxLength(50)
+                .IsUnicode(false);
+            entity.Property(e => e.Pwd)
+                .HasMaxLength(50)
                 .IsUnicode(false);
             entity.Property(e => e.RegDate)
                 .HasDefaultValueSql("(getdate())")
