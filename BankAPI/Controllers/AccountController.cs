@@ -54,7 +54,7 @@ public class AccountController : ControllerBase
         return CreatedAtAction(nameof(GetById), new { id = newAccount.Id }, newAccount);
     }
 
-
+    [Authorize(Policy = "SuperAdmin")]
     [HttpPut("{id}")]
     public async Task<IActionResult> Update(int id, AccountDtoIn account)
     {
@@ -94,6 +94,7 @@ public class AccountController : ControllerBase
         return result;
     }
 
+    [Authorize(Policy = "SuperAdmin")]
     [HttpDelete("{id}")]
     public async Task<IActionResult> Delete(int id)
     {
